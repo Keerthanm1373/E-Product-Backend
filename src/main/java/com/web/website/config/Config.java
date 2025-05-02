@@ -43,7 +43,7 @@ public class Config {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         http.authorizeHttpRequests(request -> request
-                .requestMatchers("/web/register", "/web/login").permitAll()
+                .requestMatchers("/web/register", "/web/login", "/web/send-otp", "/web/verify-otp", "/web/check-email").permitAll()
                 .requestMatchers("/users/userProfile").hasAuthority("ROLE_USER")
                 .requestMatchers("/users/adminProfile", "/web/products", "/web/update").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated());
@@ -62,7 +62,7 @@ public class Config {
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("https://e-product-website.onrender.com")); // safer than addAllowedOrigin for env var
+        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:5173")); // safer than addAllowedOrigin for env var
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);

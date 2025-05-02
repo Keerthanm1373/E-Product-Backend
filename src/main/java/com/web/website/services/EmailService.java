@@ -14,7 +14,7 @@ public class EmailService {
 
     public void sendWelcomeEmail(String toEmail, String username) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@baeldung.com");
+        message.setFrom("noreply@eproduct.com");
         message.setTo(toEmail);
         message.setSubject("Welcome to Our Website!");
         message.setText("Hi " + username + ",\n\nThank you for registering with us!\n\nRegards,\nTeam");
@@ -24,7 +24,7 @@ public class EmailService {
 
     public void sendOrderConfirmationEmail(Order order) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@ecommers.com");
+        message.setFrom("noreply@eproduct.com");
         message.setTo(order.getEmail());
         message.setSubject("Order Confirmation - Thank You for Your Purchase!");
 
@@ -53,4 +53,14 @@ public class EmailService {
 
         mailSender.send(message);
     }
+
+    public void sendOtpEmail(String toEmail, String otp) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("noreply@eproduct.com");
+        message.setTo(toEmail);
+        message.setSubject("Your OTP for Registration");
+        message.setText("Your OTP is: " + otp + "\nIt is valid for 5 minutes.");
+        mailSender.send(message);
+    }
+
 }
