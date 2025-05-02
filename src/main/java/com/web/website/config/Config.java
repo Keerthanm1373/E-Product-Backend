@@ -33,6 +33,9 @@ public class Config {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Value("${FRONT_END_KEY}")
+    private String FRONT_END_KEY;
+
 
 
     @Bean
@@ -62,7 +65,7 @@ public class Config {
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:5173")); // safer than addAllowedOrigin for env var
+        configuration.setAllowedOriginPatterns(Arrays.asList(FRONT_END_KEY)); // safer than addAllowedOrigin for env var
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
