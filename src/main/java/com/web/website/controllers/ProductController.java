@@ -28,28 +28,28 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public Optional<Products> getProductId(@PathVariable Long id){
+    public Optional<Products> getProductId(@PathVariable Long id) {
         return service.getProductId(id);
     }
+
     @PutMapping("/update")
     public Products updateProduct(@RequestPart Products product) {
         return service.updateProduct(product);
     }
 
     @GetMapping("/getproduct")
-    public List<Products> getAllProduct(){
+    public List<Products> getAllProduct() {
         return service.getAllProduct();
     }
 
-    @PostMapping( "/products")
+    @PostMapping("/products")
     public ResponseEntity<?> addProduct(@RequestPart Products product,
                                         @RequestPart MultipartFile imageFile) {
-        try{
+        try {
             System.out.println(product);
             Products product1 = service.saveProduct(product, imageFile);
             return new ResponseEntity<>(product1, HttpStatus.CREATED);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

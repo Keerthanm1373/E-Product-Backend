@@ -12,11 +12,9 @@ public class CartServices {
     @Autowired
     private CartRepo repo;
 
-    public CartDetails getDetails(CartDetails cart){
+    public CartDetails getDetails(CartDetails cart) {
         return repo.save(cart);
     }
-
-
 
 
 }

@@ -37,7 +37,6 @@ public class Config {
     private String FRONT_END_KEY;
 
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable());

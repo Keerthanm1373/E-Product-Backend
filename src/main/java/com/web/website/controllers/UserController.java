@@ -20,13 +20,15 @@ import java.util.*;
 @RequestMapping("/web")
 public class UserController {
 
-    @Autowired private UserService service;
-    @Autowired private JwtService jwtService;
-    @Autowired private EmailService emailService;
-    @Autowired private UserRepo usersRepository;
+    @Autowired
+    private UserService service;
+    @Autowired
+    private JwtService jwtService;
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private UserRepo usersRepository;
 
-    private Map<String, String> otpStorage = new HashMap<>();
-    private Map<String, LocalDateTime> otpExpiry = new HashMap<>();
 
     @PostMapping("/register")
     public Users userRegister(@RequestBody Users user) {

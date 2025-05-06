@@ -23,7 +23,7 @@ public class OrderServices {
     }
 
 
-    public List<Order> getDetails(){
+    public List<Order> getDetails() {
         return orderRepo.findAll();
     }
 

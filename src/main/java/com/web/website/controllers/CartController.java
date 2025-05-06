@@ -27,7 +27,7 @@ public class CartController {
     private EmailService emailService;
 
     @PostMapping("/cart")
-    public CartDetails getDetails(@RequestBody CartDetails cart){
+    public CartDetails getDetails(@RequestBody CartDetails cart) {
         return service.getDetails(cart);
     }
 
@@ -37,8 +37,9 @@ public class CartController {
         emailService.sendOrderConfirmationEmail(savedOrder); // Send email
         return savedOrder;
     }
+
     @GetMapping("/details")
-    public List<Order> getDetails(){
+    public List<Order> getDetails() {
         return orderService.getDetails();
     }
 

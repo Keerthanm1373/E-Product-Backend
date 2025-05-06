@@ -12,15 +12,15 @@ public class AddressServices {
     @Autowired
     private AddressRepo repo;
 
-    public List<Address> getAddress(){
+    public List<Address> getAddress() {
         return repo.findAll();
     }
 
-    public Address updateAddress(Address address){
+    public Address updateAddress(Address address) {
         return repo.save(address);
     }
 
-    public Address addAddress(Address address){
+    public Address addAddress(Address address) {
         return repo.save(address);
     }
 

@@ -41,7 +41,7 @@ public class ProductService {
         return repo.findById(id);
     }
 
-    public Products updateProduct(Products product)  {
+    public Products updateProduct(Products product) {
         return repo.save(product);
     }
 
@@ -203,7 +203,7 @@ public class ProductService {
 
     private String callGeminiAPI(String prompt) {
         try {
-            String GEMINI_API_KEY = GEMINE_API_KEY; // **Replace with your actual API key**
+            String GEMINI_API_KEY = GEMINE_API_KEY;
             String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + GEMINI_API_KEY;
 
             HttpHeaders headers = new HttpHeaders();

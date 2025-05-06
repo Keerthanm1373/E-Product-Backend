@@ -21,25 +21,25 @@ public class AddressController {
     private UserService userService;
 
     @GetMapping("/address")
-    public List<Address> getAddress(){
+    public List<Address> getAddress() {
 
         return service.getAddress();
     }
 
     @PostMapping("/addAddress")
-    public Address addAddress(@RequestBody Address address){
+    public Address addAddress(@RequestBody Address address) {
 
-        return  service.addAddress(address);
+        return service.addAddress(address);
     }
 
     @PutMapping("/updateAddress")
-    public Address updateAddress(@RequestBody Address address){
+    public Address updateAddress(@RequestBody Address address) {
 
         return service.updateAddress(address);
     }
 
     @GetMapping("/userDetails")
-    public Map<String, Object> getUsernameFromToken(HttpServletRequest request){
+    public Map<String, Object> getUsernameFromToken(HttpServletRequest request) {
         return userService.getUserInfoFromToken(request);
     }
 

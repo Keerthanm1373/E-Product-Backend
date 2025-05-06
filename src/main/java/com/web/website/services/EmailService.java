@@ -16,8 +16,8 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("noreply@eproduct.com");
         message.setTo(toEmail);
-        message.setSubject("Welcome to Our Website!");
-        message.setText("Hi " + username + ",\n\nThank you for registering with us!\n\nRegards,\nTeam");
+        message.setSubject("Welcome to E-Products!");
+        message.setText("Hi " + username + ",\n\nThank you for registering with us!\n\nRegards,\nE-Products Team");
 
         mailSender.send(message);
     }

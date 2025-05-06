@@ -25,6 +25,4 @@ public class CartDetails {
     private Order order;
 
 
-
-
 }
