@@ -46,7 +46,7 @@ public class Config {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         http.authorizeHttpRequests(request -> request
-                .requestMatchers("/web/register", "/web/login", "/web/send-otp", "/web/verify-otp", "/web/check-email").permitAll()
+                .requestMatchers("/web/register", "/web/login", "/web/send-otp", "/web/verify-otp", "/web/check-email", "/web/reset-password", "/web/get-otp").permitAll()
                 .requestMatchers("/users/userProfile").hasAuthority("ROLE_USER")
                 .requestMatchers("/users/adminProfile", "/web/products", "/web/update").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated());

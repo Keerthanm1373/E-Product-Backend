@@ -1,5 +1,8 @@
 package com.web.website.models;
 
+import lombok.Data;
+
+@Data
 public class OtpRequest {
 
     private String email;

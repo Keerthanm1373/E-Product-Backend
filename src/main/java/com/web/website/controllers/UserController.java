@@ -6,6 +6,7 @@ import com.web.website.repo.UserRepo;
 import com.web.website.services.EmailService;
 import com.web.website.services.JwtService;
 import com.web.website.services.UserService;
+import dto.User_dto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -50,30 +51,23 @@ public class UserController {
 
     @PostMapping("/send-otp")
     public ResponseEntity<String> sendOtp(@RequestBody Map<String, String> payload) {
-        String email = payload.get("email");
-        String otp = String.valueOf(new Random().nextInt(900000) + 100000);
-
-        otpStorage.put(email, otp);
-        otpExpiry.put(email, LocalDateTime.now().plusMinutes(5));
-
-        emailService.sendOtpEmail(email, otp);
-        return ResponseEntity.ok("OTP sent to email");
+        return service.sendOtp(payload);
     }
 
     @PostMapping("/verify-otp")
     public ResponseEntity<String> verifyOtp(@RequestBody OtpRequest otpRequest) {
-        String email = otpRequest.getEmail();
-        String inputOtp = otpRequest.getOtp();
-
-        String storedOtp = otpStorage.get(email);
-        LocalDateTime expiry = otpExpiry.get(email);
-
-        if (storedOtp != null && storedOtp.equals(inputOtp) && expiry != null && expiry.isAfter(LocalDateTime.now())) {
-            otpStorage.remove(email);
-            otpExpiry.remove(email);
-            return ResponseEntity.ok("OTP verified");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or expired OTP");
-        }
+        return service.verifyOtp(otpRequest);
     }
+
+    @PostMapping("/get-otp")
+    public ResponseEntity<String> sendOtpForPassword(@RequestBody Map<String, String> payload) {
+        return service.sendOtpForPassword(payload);
+    }
+
+    @PostMapping("/reset-password")
+    public String resetPassword(@RequestBody User_dto userDto) {
+        return service.resetPassword(userDto);
+
+    }
+
 }
