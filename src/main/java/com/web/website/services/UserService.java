@@ -1,8 +1,11 @@
 package com.web.website.services;
 
 import com.web.website.models.OtpRequest;
+import com.web.website.models.Products;
 import com.web.website.models.Users;
 import com.web.website.repo.UserRepo;
+import dto.Product_dto;
+import dto.Roles_dto;
 import dto.User_dto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,6 +146,32 @@ public class UserService {
         emailService.sendOtpEmail(email, otp);
         return ResponseEntity.ok("OTP sent to email");
     }
+
+    public List<Roles_dto> getUserRoles() {
+        return repo.findAll()
+                .stream().map(this::rolesDto).collect(Collectors.toList());
+    }
+
+
+    private Roles_dto rolesDto(Users users) {
+        Roles_dto dto = new Roles_dto();
+        dto.setUsername(users.getUsername());
+        dto.setEmail(users.getEmail());
+        dto.setRoles(users.getRoles());
+        return dto;
+    }
+
+    public Roles_dto updateUserRoles(Roles_dto rolesDto) {
+        Optional<Users> optionalUser = repo.findByEmail(rolesDto.getEmail());
+        if (optionalUser.isPresent()) {
+            Users user = optionalUser.get();
+            user.setRoles(rolesDto.getRoles());
+            Users savedUser = repo.save(user); // Save updated user
+            return rolesDto(savedUser); // Convert and return DTO
+        }
+        throw new RuntimeException("User not found with email: " + rolesDto.getEmail());
+    }
+
 
 
 }

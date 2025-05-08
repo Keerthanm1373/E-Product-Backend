@@ -6,6 +6,7 @@ import com.web.website.repo.UserRepo;
 import com.web.website.services.EmailService;
 import com.web.website.services.JwtService;
 import com.web.website.services.UserService;
+import dto.Roles_dto;
 import dto.User_dto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,16 @@ public class UserController {
     public String resetPassword(@RequestBody User_dto userDto) {
         return service.resetPassword(userDto);
 
+    }
+
+    @GetMapping("/roles-assign")
+    public List<Roles_dto> getUserRoles(){
+        return service.getUserRoles();
+    }
+
+    @PostMapping("/roles-update")
+    public Roles_dto updateUsersRoles(@RequestBody Roles_dto rolesDto){
+        return service.updateUserRoles(rolesDto);
     }
 
 }

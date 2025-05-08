@@ -46,8 +46,9 @@ public class Config {
 
         http.authorizeHttpRequests(request -> request
                 .requestMatchers("/web/register", "/web/login", "/web/send-otp", "/web/verify-otp", "/web/check-email", "/web/reset-password", "/web/get-otp").permitAll()
-                .requestMatchers("/users/userProfile").hasAuthority("ROLE_USER")
-                .requestMatchers("/users/adminProfile", "/web/products", "/web/update").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/users/userProfile").hasAuthority("USER")
+                .requestMatchers("/users/adminProfile", "/web/products", "/web/update").hasAuthority("ADMIN")
+                .requestMatchers("/web/roles-assign", "/web/roles-update").hasAuthority("SUPER_ADMIN")
                 .anyRequest().authenticated());
 
 
